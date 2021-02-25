@@ -1,9 +1,26 @@
 <div class="container">
-  <header><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1024px-Los_Angeles_Clippers_%282015%29.svg.png" width="150" class="img-responsive main-image"></header>
+  <header><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1024px-Los_Angeles_Clippers_%282015%29.svg.png" width="150" class=""></header>
   <div class="col-md-8 col-md-offset-2">
     <h2>Welcome to the Los Angeles Clippers' Social Page!</h2>
 
-    <div class="content">
-      <p>Please Sign in or Sign up to continue.</p>
-    </div>
-</dvi>
+    <p>Please <b>Sign Up</b> below to contine:<br>
+        Already a member? Click <b>Sign In</b> to contine</p>
+
+
+    <nav>
+     <% if logged_in? %>
+
+        <a href="/posts/new"> Create New Post </a>
+        <a href="/logout"> Log Out </a>
+        <p>Welcome, <%=current_user.username %></p>
+
+        <% else %>
+        <a href="/signup">Sign Up</a>
+        </br>
+        <a href="/login"> Sign In </a>
+        <%end %>
+
+    </nav>
+</div>
+
+
