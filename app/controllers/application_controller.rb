@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       erb :'users/create_user', locals: {message: "Fill out the form below to continue."}
     else
-      redirect to '/teams'
+      redirect to '/homepage'
     end
   end
 
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to '/login'
+      redirect to '/homepage'
     end
   end
 

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="alert alert-dark text-center">
+            <h2 style="text-align: left"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1024px-Los_Angeles_Clippers_%282015%29.svg.png" width="75"><center>Welcome <%=current_user.username %> to the LA Clippers Club!</center></h2>
+            <span><center>The perfect place for the fans to connect over their favorite team.</span>
+            <br><br>
+        </div>
+    </div>
+    <nav>
+        <% if logged_in? %>
+
+            <a href="/posts/new"> Create Post </a>
+            <a href="/logout"> Log Out </a>
+        <%end %>
+    </nav>
+    <p </p>
+</div>
+
+<h2> Previous Posts </h2>
+
+<% @posts.each do |post| %>
+  <div>
+    <%= post.content %>
+  </div>
+<% end %>

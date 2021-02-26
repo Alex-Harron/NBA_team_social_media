@@ -1,25 +1,22 @@
 <div class="container">
-  <header><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1024px-Los_Angeles_Clippers_%282015%29.svg.png" width="150" class=""></header>
+  <header><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1024px-Los_Angeles_Clippers_%282015%29.svg.png" width="75" class=""></header>
   <div class="col-md-8 col-md-offset-2">
-    <h2>Welcome to the Los Angeles Clippers' Social Page!</h2>
+    <h2><center>Welcome to the Los Angeles Clippers' Social Page!</h2>
 
-    <p>Please <b>Sign Up</b> below to contine:<br>
-        Already a member? Click <b>Sign In</b> to contine</p>
-
+    <p style="font-size:18px">Please <b>Sign Up</b> below to contine: </p>
+    <p style="font-size:11px">Already a member? Click <b>Sign In</b> to contine</p>
 
     <nav>
-     <% if logged_in? %>
+    <% if !logged_in? %>
+         <a href="/signup">Sign Up</a> 
+    
+         <a href="/login"> Sign In </a>
 
-        <a href="/posts/new"> Create New Post </a>
-        <a href="/logout"> Log Out </a>
-        <p>Welcome, <%=current_user.username %></p>
+         <%else%>
 
-        <% else %>
-        <a href="/signup">Sign Up</a>
-        </br>
-        <a href="/login"> Sign In </a>
+          <a href="/homepage"> Continue to your Home Page. </a>
+          
         <%end %>
-
     </nav>
 </div>
 

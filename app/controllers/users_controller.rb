@@ -22,12 +22,16 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/homepage' do 
+        erb :'users/show'
+    end
+
     get '/logout' do
         if logged_in?
         session.destroy
         redirect to '/'
         else
-        redirect to '/'
+        redirect to '/homepage'
         end
     end
 end
