@@ -3,23 +3,22 @@ class PostsController < ApplicationController
   get '/posts' do 
       @posts = Post.all
       erb :'posts/index'
-  end 
+  end
 
   get '/posts/new' do 
       erb :'posts/create_post'
   end 
 
-
   get '/posts/:id' do 
-    @post = Post.includes(:user).find_by_id(params[:id])
-      erb :'posts/show'
+    get_post
+    erb :'posts/show'
   end 
 
   post '/posts' do 
-      @post = Post.new(title: params[:title], content: params[:content])
-      @post.user_id = session[:user_id]
-      @post.save
-      redirect "/posts/#{@post.id}" 
+    @post = Post.new(title: params[:title], content: params[:content])
+    @post.user_id = session[:user_id]
+    @post.save
+    redirect "/posts/#{@post.id}" 
   end 
 
   get '/posts/:id/edit' do 
@@ -28,11 +27,6 @@ class PostsController < ApplicationController
       redirect_if_not_authorized
       erb :"/posts/edit_post"
   end 
-
-  post '/posts/:id/edit' do 
-        get_post
-        redirect_if_not_authorized
-        erb :
 
   patch '/posts/:id' do 
       get_post
