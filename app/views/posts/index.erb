@@ -9,18 +9,22 @@
     </div>
     <nav>
         <% if logged_in? %>
-
             <a href="/posts/new"> Create Post </a>
+            <br><br>
             <a href="/logout"> Log Out </a>
         <%end %>
     </nav>
     <p </p>
 </div>
 
-<h2> Previous Posts </h2>
+<h2> Recent Posts </h2>
 
-<% @posts.each do |post| %>
-  <div>
-    <%= post.content %>
-  </div>
+<% @posts.each do |p| %>
+    <p><b><%= p.title %></b>
+        <br><br>
+        <%=p.content %>
+        <% if current_user == p.user %>
+            <a href="/posts/<%= p.id %>/edit">Edit</a> 
+        <% end %>
+    </p>
 <% end %>

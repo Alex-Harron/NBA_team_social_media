@@ -1,91 +1,65 @@
 class PostsController < ApplicationController
 
-    get '/posts' do
-        if logged_in?
-          @posts = Post.all
-          erb :'posts/posts'
-        else
-          redirect to '/login'
-        end
-      end
-    
-      get '/posts/new' do
-        if logged_in?
-          erb :'posts/create_post'
-        else
-          redirect to '/login'
-        end
-      end
-    
-      post '/posts' do
-        if logged_in?
-          if params[:content] == ""
-            redirect to "/posts/new"
-          else
-            @post = current_user.posts.build(content: params[:content])
-            if @post.save
-              redirect to "/posts/#{@post.id}"
-            else
-              redirect to "/posts/new"
-            end
-          end
-        else
-          redirect to '/login'
-        end
-      end
-    
-      get '/posts/:id' do
-        if logged_in?
-          @post = Post.find_by_id(params[:id])
-          erb :'posts/show'
-        else
-          redirect to '/login'
-        end
-      end
-    
-      get '/posts/:id/edit' do
-        if logged_in?
-          @post = Post.find_by_id(params[:id])
-          if @posts && @post.user == current_user
-            erb :'posts/edit_post'
-          else
-            redirect to '/posts'
-          end
-        else
-          redirect to '/posts'
-        end
-      end
-    
-      patch '/posts/:id' do
-        if logged_in?
-          if params[:content] == ""
-            redirect to "/posts/#{params[:id]}/edit"
-          else
-            @post = Post.find_by_id(params[:id])
-            if @post && @post.user == current_user
-              if @post.update(content: params[:content])
-                redirect to "/posts/#{@post.id}"
-              else
-                redirect to "/posts/#{@post.id}/edit"
-              end
-            else
-              redirect to '/posts'
-            end
-          end
-        else
-          redirect to '/login'
-        end
-      end
-    
-      delete '/posts/:id/delete' do
-        if logged_in?
-          @post = Post.find_by_id(params[:id])
-          if @post && @post.user == current_user
-            @post.delete
-          end
-          redirect to '/posts'
-        else
-          redirect to '/login'
-        end
-      end
+  get '/posts' do 
+      @posts = Post.all
+      erb :'posts/index'
+  end 
+
+  get '/posts/new' do 
+      erb :'posts/create_post'
+  end 
+
+
+  get '/posts/:id' do 
+    @post = Post.includes(:user).find_by_id(params[:id])
+      erb :'posts/show'
+  end 
+
+  post '/posts' do 
+      @post = Post.new(title: params[:title], content: params[:content])
+      @post.user_id = session[:user_id]
+      @post.save
+      redirect "/posts/#{@post.id}" 
+  end 
+
+  get '/posts/:id/edit' do 
+      get_post
+
+      redirect_if_not_authorized
+      erb :"/posts/edit_post"
+  end 
+
+  post '/posts/:id/edit' do 
+        get_post
+        redirect_if_not_authorized
+        erb :
+
+  patch '/posts/:id' do 
+      get_post
+      redirect_if_not_authorized
+      @post.update(title: params[:title], content: params[:content])
+      redirect "/posts/#{@post.id}" 
+  end 
+
+
+  delete '/posts/:id' do 
+      get_post
+      @post.destroy
+      redirect '/posts'
+  end 
+
+private 
+
+  def get_post 
+      @post = Post.find_by(id:params[:id])
+  end 
+
+  def redirect_if_not_authorized
+      if logged_in? && @post != current_user.posts.find_by(id: params[:id])
+          flash[:error] = "You cant make this edit, you don't own this"
+          redirect '/posts'
+      end 
+
+  end 
 end
+
