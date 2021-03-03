@@ -1,30 +1,54 @@
-<div class="row">
+</div>
+    </div>
+    <div class="w3-top">
+ <div class="w3-bar w3-theme-d4 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="w3-margin-right"></i><img src="https://upload.wikimedia.org/wikipedia/commons/7/71/LA_Clippers_wordmark_2015%E2%80%93current.png" width="75"></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-red">3</span></button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+    </div>
+  </div>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+    <img src="https://turbologo.com/articles/wp-content/uploads/2019/12/Los-Angeles-Clippers-emblem.png.webp" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+  </a>
+ </div>
+</div>
+<div>
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="alert alert-dark text-center">
-        <h1 style="text-align: right"><img src="https://upload.wikimedia.org/wikipedia/commons/7/71/LA_Clippers_wordmark_2015%E2%80%93current.png" width="100"></h1>
-            <h2><center>Welcome <%=current_user.username %> to the LA Clippers Club!</center></h2>
+        <br><br>
+            <h2><center><b>Welcome <%= current_user.username %> to the LA Clippers Club!</b></center></h2>
             <span><center>The perfect place for the fans to connect over their favorite team.</span>
             <br><br>
+    <nav>
+</div>
+<% if logged_in? %>
+<div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i><a href="/posts/new"> Create Post </a></button>
+              <button type="button" class="w3-button w3-theme"><a href="/logout"> Log Out </a></button>
+            </div>
         </div>
     </div>
-    <nav>
-        <% if logged_in? %>
-            <a href="/posts/new"> Create Post </a>
-            <br><br>
-            <a href="/logout"> Log Out </a>
-        <%end %>
-    </nav>
-    <p </p>
 </div>
+<%end%>
 
-<h2> Recent Posts </h2>
-
+<h2><center> Recent Posts:</center> </h2>
 <% @posts.each do |p| %>
-    <p><a href="/posts/<%= p.id %>"><b><%= p.title %></b></a>
-        <br><br>
+
+    <div class="w3-container w3-card w3-white w3-round w3-margin"><a href="/posts/<%= p.id %>"><b><%= p.title %></b></a>
+    <img src="https://turbologo.com/articles/wp-content/uploads/2019/12/Los-Angeles-Clippers-emblem.png.webp" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+    <span class="w3-right w3-opacity"><%=p.timestamp%></span>
+        <hr class="w3-clear">
+        <p> <%= p.content %></p>
         <% if current_user == p.user %>
             <a href="/posts/<%= p.id %>/edit"></a> 
         <% end %>
-    </p>
+    </div>
 <% end %>
