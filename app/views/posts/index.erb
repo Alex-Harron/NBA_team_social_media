@@ -20,11 +20,10 @@
 <h2> Recent Posts </h2>
 
 <% @posts.each do |p| %>
-    <p><b><%= p.title %></b>
+    <p><a href="/posts/<%= p.id %>"><b><%= p.title %></b></a>
         <br><br>
-        <%=p.content %>
         <% if current_user == p.user %>
-            <a href="/posts/<%= p.id %>/edit">Edit</a> 
+            <a href="/posts/<%= p.id %>/edit"></a> 
         <% end %>
     </p>
 <% end %>
