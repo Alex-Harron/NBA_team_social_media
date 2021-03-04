@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
   get '/posts' do 
-    binding.pry
       @posts = Post.all
       erb :'posts/index'
   end

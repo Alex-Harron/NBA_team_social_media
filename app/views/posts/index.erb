@@ -1,54 +1,123 @@
-</div>
-    </div>
-    <div class="w3-top">
- <div class="w3-bar w3-theme-d4 w3-left-align w3-large">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="w3-margin-right"></i><img src="https://upload.wikimedia.org/wikipedia/commons/7/71/LA_Clippers_wordmark_2015%E2%80%93current.png" width="75"></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-  <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-red">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-    </div>
-  </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src="https://turbologo.com/articles/wp-content/uploads/2019/12/Los-Angeles-Clippers-emblem.png.webp" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-  </a>
- </div>
-</div>
 <div>
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="alert alert-dark text-center">
         <br><br>
-            <h2><center><b>Welcome <%= current_user.username %> to the LA Clippers Club!</b></center></h2>
-            <span><center>The perfect place for the fans to connect over their favorite team.</span>
-            <br><br>
-    <nav>
-</div>
-<% if logged_in? %>
-<div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i><a href="/posts/new"> Create Post </a></button>
-              <button type="button" class="w3-button w3-theme"><a href="/logout"> Log Out </a></button>
+            <div class="w3-container w3-card w3-blue w3-round w3-margin">
+                <h2><center><b>Welcome <%= current_user.username %> to the LA Clippers Club!</b></center></h2>
+                <span><center>The perfect place for the fans to connect over their favorite team.</center></span>
+                <br>
             </div>
         </div>
     </div>
 </div>
-<%end%>
-
-<h2><center> Recent Posts:</center> </h2>
-<% @posts.each do |p| %>
-
-    <div class="w3-container w3-card w3-white w3-round w3-margin"><a href="/posts/<%= p.id %>"><b><%= p.title %></b></a>
-    <img src="https://turbologo.com/articles/wp-content/uploads/2019/12/Los-Angeles-Clippers-emblem.png.webp" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-    <span class="w3-right w3-opacity"><%=p.timestamp%></span>
-        <hr class="w3-clear">
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+    <!-- The Grid -->
+    <div class="w3-row">
+    <!-- Left Column -->
+        <div class="w3-col m3">
+        <!-- Profile -->
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <h4 class="w3-center"><b><%=current_user.username%></b></h4>
+                    <p class="w3-center"><img src="https://robohash.org/sitsequiquia.png?size=300x300&set=set1" class="w3-circle" style="height:106px;width:106px"></p>
+                    <hr>
+                    <p><%=current_user.email%></p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Washington, DC</p>
+                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 12, 1997</p>
+                </div>
+            <% if logged_in? %>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-container w3-padding">
+                            <center><button type="button" class="w3-button w3-grey w3-small"><i class="fa fa-pencil"></i><a href="/posts/new"> Create Post </a></button></center>
+                            <br>
+                            <center><button type="button" class="w3-button w3-red w3-small"><a href="/logout"> Log Out </a></button></center>
+                        </div>
+                    </div>
+                <%end%>
+                </div>
+            </div>
+        <br>
+    <!-- End Left Column -->
+    </div>
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+   
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+        <h4><center><b>Recent Posts:</b><center></h4>
+        </div>
+      </div>
+      <% @posts.each do |p| %>
+        <div class="w3-container w3-card w3-white w3-round w3-margin"><%=p.user.username%>
+        <img src="<%= p.user.img_url == nil ? 'https://robohash.org/sitsequiquia.png?size=300x300&set=set1' : p.user.img_url %>" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity"><%=p.timestamp%></span>
+        <h3 style="font-size:20px"><a href="/posts/<%= p.id %>"><b><%= p.title %></b></a></h3>
         <p> <%= p.content %></p>
+        <div class="w3-row-padding" style="margin:0 -16px">
+        </div>
+        <button type="button" class="w3-button w3-blue w3-margin-bottom w3-small"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom w3-small"><i class="fa fa-comment"></i>  Comment</button>
         <% if current_user == p.user %>
             <a href="/posts/<%= p.id %>/edit"></a> 
         <% end %>
+        </div>
+    <% end %>
+      
+    <!-- End Middle Column -->
     </div>
-<% end %>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-container w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Upcoming Schedule:</p>
+          <img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_dan_kennedy-1-150x150.png" style="width:100px;">
+            <p>Thu, Mar 4 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/dal.png&w=50&h=50" style="width:20px"> Dallas 7:00 PM</p>
+            <p>Sat, Mar 20 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/cha.png&w=50&h=50" style="width:20px"> Charlotte 9:00 PM</p>
+            <p>Mon, Mar 22 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/atl.png&w=50&h=50" style="width:20px"> Atlanta 9:30 PM</p>
+            <p>Thu, Mar 25 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/den.png&w=50&h=50" style="width:20px"> Denver 7:00 PM</p>
+            <p>Tue, Mar 30 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/hou.png&w=50&h=50" style="width:20px"> Houston 7:00 PM</p>
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <span>Jane Doe</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+      
+      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+        <p><i class="fa fa-bug w3-xxlarge"></i></p>
+      </div>
+      
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+
