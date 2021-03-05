@@ -16,3 +16,4 @@ Post.create(title: "I was looking for PG all night, but he never showed!", conte
 Post.create(title: "Joker was a beast tonight!! We got lucky with that W.", content: Faker::Lorem.paragraph_by_chars, timestamp: Faker::Time.between(from: DateTime.now - 365, to: DateTime.now),  user_id: User.all.sample.id)
 Post.create(title: "That man is a god on Defense.", content: Faker::Lorem.paragraph_by_chars, timestamp: Faker::Time.between(from: DateTime.now - 365, to: DateTime.now), user_id: User.all.sample.id)
 Post.create(title:  "What do ya'll think our chances at a chip this year are?", content:Faker::Lorem.paragraph_by_chars, timestamp: Faker::Time.between(from: DateTime.now - 365, to: DateTime.now), user_id: User.all.sample.id)
+    

@@ -42,19 +42,5 @@ class PostsController < ApplicationController
       @post.destroy
       redirect '/posts'
   end 
-
-private 
-
-  def get_post 
-      @post = Post.find_by(id:params[:id])
-  end 
-
-  def redirect_if_not_authorized
-      if logged_in? && @post != current_user.posts.find_by(id: params[:id])
-          flash[:error] = "You cant make this edit, you don't own this"
-          redirect '/posts'
-      end 
-
-  end 
 end
 

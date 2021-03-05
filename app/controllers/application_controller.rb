@@ -15,12 +15,22 @@ class ApplicationController < Sinatra::Base
 
 
   helpers do 
-  def current_user  
-    @current_user ||= User.find_by_id(session[:user_id])
-  end 
+    def current_user  
+      @current_user ||= User.find_by_id(session[:user_id])
+    end 
 
-  def logged_in?
-    !!current_user
+    def logged_in?
+      !!current_user
+    end
+
+    def get_post 
+      @post = Post.find_by(id:params[:id])
+    end 
+
+    def redirect_if_not_authorized
+      if logged_in? && @post != current_user.posts.find_by(id: params[:id])
+        redirect '/posts'
+      end 
+    end 
   end 
-end 
 end
