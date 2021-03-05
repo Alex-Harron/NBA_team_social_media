@@ -2,34 +2,66 @@
 <h1 style="text-align: right"></h1>
 <div class="w3-container w3-card w3-round w3-margin"  style="background-color:DarkBlue;">
     <br><br>
-    <h2 style="color:White;"><center>Edit Post</h2>
+    <h2 style="color:White;"><center>Edit Your Post</h2>
 </div>
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">  
-    <div class="w3-row">
-        <div class="w3-col m3">
-            <div style class="w3-card w3-round w3-white">
-                <div class="w3-container">
-                    <br><br>
-                    <form action="/posts/<%= @post.id %>" method="post">
-                    <input type="hidden" name="_method" value="patch">
-                    Title: <input type="text" name="title" value="<%= @post.title %>">
-                    <br><br>
-                    Content: <textarea name="content"><%= @post.content %></textarea>
-                    <br><br>
-                    <input type="submit" value="Edit Post">
-                    </form>
-                    <br>
-                    <form action="/posts/<%= @post.id %>" method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <input type="submit" value="Delete Post">
-                    </form>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    
-          
 </body>
+<!-- Page Container -->
+            <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+                <!-- The Grid -->
+                <div class="w3-row">
+                <!-- Left Column -->
+                    <div class="w3-col m3">
+                    <!-- Profile -->
+                        <div class="w3-card w3-round w3-white">
+                            <div class="w3-container">
+                                <h4 class="w3-center"><b><%=current_user.username%></b></h4>
+                                <p class="w3-center"> <img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" class="w3-circle" style="height:106px;width:106px"></p>
+                                <hr>
+                                <p><center><%=current_user.email%></center></p>
+                            </div>
+                        <% if logged_in? %>
+                            <div class="w3-row-padding">
+                                
+                            <%end%>
+                            </div>
+                        </div>
+                    <br>
+            
+                        <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+                        <p><img src="https://s3.amazonaws.com/media.mediapost.com/dam/cropped/2017/10/03/magazinead-600_f9Gzbfn.jpg" style="width:200px;"></p>
+                      </div>
+                      <br>          
+                      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+                        <p><img src="https://media0.giphy.com/media/28etCP6YTM5ivxstOp/source.gif" style="width:200px;"></p>
+                      </div>
+                      <!-- End Left Column -->
+                </div>
+                <!-- Middle Column -->
+                <div class="w3-col m7">
+               
+                  <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                      <div class="w3-container w3-card w3-white w3-round w3-margin">
+
+                      <br><br>
+                      <form action="/posts/<%= @post.id %>" method="post">
+                      <input type="hidden" name="_method" value="patch">
+                      Title: <input type="text" name="title" value="<%= @post.title %>">
+                      <br><br>
+                      Content: <textarea name="content"><%= @post.content %></textarea>
+                      <br><br>
+                      <input type="submit" value="Edit Post">
+                      </form>
+                      <br>
+                      <form action="/posts/<%= @post.id %>" method="post">
+                      <input type="hidden" name="_method" value="delete">
+                      <input type="submit" value="Delete Post">
+                      </form>
+                      <br>
+                    
+                    </div>
+                  </div>
+                  
+                <!-- End Middle Column -->
+                </div>
 
