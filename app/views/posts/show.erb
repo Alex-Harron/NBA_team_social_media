@@ -1,71 +1,56 @@
 <body style= "background-image: url('https://i.pinimg.com/originals/25/9c/08/259c081cf67c0c5e351817663c4d1479.jpg'); background-size: 35%;">
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <div class="w3-row">
+    <div class="w3-col m3">
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+          <h4 class="w3-center"><b><%=@post.user.username%></b></h4>
+          <p class="w3-center"> <img src="<%= @post.user.img_url == nil ? 'https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png' : @post.user.img_url %>" class="w3-circle" style="height:106px;width:106px"></p>
+          <hr>
+          <p><center><%=@post.user.email%></center></p>
+        </div>
+        <div class="w3-row-padding">
+        </div>
+      </div>
+      <br>
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p><img src="https://images.squarespace-cdn.com/content/v1/5c055f98620b858a898bfcae/1549389806485-ICGOX3B4QFYYGS3V3DEC/ke17ZwdGBToddI8pDm48kLQaKYcscmMzzBIwgjs5b517gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmx7E2y0Nr9bcLpdErMserE1OcCM442twbF3gqzRaQ2scbMBxTkbZ6nALm0dccsUTe/YourAdChoices-CYCLE-REDslower.gif" style="width:200px;"></p>
+      </div>
+      <br>          
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p><img src="http://walyou.com/wp-content/uploads//2019/08/honey-main.jpg" style="width:200px;"></p>
+      </div>
+    </div>
+                
+    
+    <div class="w3-col m7">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-container w3-card w3-white w3-round w3-margin">
+            <h4><center><b><%= @post.user.username %>'s Post:</b><center></h4>
+          </div>
+          <div class="w3-container w3-card w3-white w3-round w3-margin"><%=@post.user.username%>
+            <img src="<%= @post.user.img_url == nil ? 'https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png' : @post.user.img_url %>" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <span class="w3-right w3-opacity"><%= @post.timestamp == nil ? Date.today.strftime('%Y-%m-%d') : @post.timestamp.strftime('%Y-%m-%d') %></span>
+            <h3 style="font-size:20px"><b><%= @post.title %></b></h3>
+            <p> <%= @post.content %></p>
+              <div class="w3-row-padding" style="margin:0 -16px">
+              </div>
+          </div>
+          <div class="w3-container w3-card w3-white w3-round w3-margin">
+          <% if current_user == @post.user %>
+            <a href="/posts/<%= @post.id %>/edit">Edit Post</a>
+            <form action="/posts/<%= @post.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            </form>
+            <a href="/posts"> Publish Your Post </a>
+          <%else%>
+          <br>
+            <a href="/posts"> Return to Homepage </a> 
+          <br><br>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
-        
-
-                    <!-- Page Container -->
-                    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
-                        <!-- The Grid -->
-                        <div class="w3-row">
-                        <!-- Left Column -->
-                            <div class="w3-col m3">
-                            <!-- Profile -->
-                                <div class="w3-card w3-round w3-white">
-                                    <div class="w3-container">
-                                        <h4 class="w3-center"><b><%=@post.user.username%></b></h4>
-                                        <p class="w3-center"> <img src="<%= @post.user.img_url == nil ? 'https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png' : @post.user.img_url %>" class="w3-circle" style="height:106px;width:106px"></p>
-                                        <hr>
-                                        <p><center><%=@post.user.email%></center></p>
-                                    </div>
-                                <% if logged_in? %>
-                                    <div class="w3-row-padding">
-                                        
-                                    <%end%>
-                                    </div>
-                                </div>
-                            <br>
-                    
-                                <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-                                <p><img src="https://images.squarespace-cdn.com/content/v1/5c055f98620b858a898bfcae/1549389806485-ICGOX3B4QFYYGS3V3DEC/ke17ZwdGBToddI8pDm48kLQaKYcscmMzzBIwgjs5b517gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmx7E2y0Nr9bcLpdErMserE1OcCM442twbF3gqzRaQ2scbMBxTkbZ6nALm0dccsUTe/YourAdChoices-CYCLE-REDslower.gif" style="width:200px;"></p>
-                              </div>
-                              <br>          
-                              <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-                                <p><img src="http://walyou.com/wp-content/uploads//2019/08/honey-main.jpg" style="width:200px;"></p>
-                              </div>
-                              <!-- End Left Column -->
-                        </div>
-                        <!-- Middle Column -->
-                        <div class="w3-col m7">
-                       
-                          <div class="w3-row-padding">
-                            <div class="w3-col m12">
-                              <div class="w3-container w3-card w3-white w3-round w3-margin">
-                                <h4><center><b><%= @post.user.username %>'s Post:</b><center></h4>
-                                </div>
-                                <div class="w3-container w3-card w3-white w3-round w3-margin"><%=@post.user.username%>
-                                    <img src="<%= @post.user.img_url == nil ? 'https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png' : @post.user.img_url %>" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                                    <span class="w3-right w3-opacity"><%= @post.timestamp == nil ? Date.today.strftime('%Y-%m-%d') : @post.timestamp.strftime('%Y-%m-%d') %></span>
-                                    <h3 style="font-size:20px"><b><%= @post.title %></b></h3>
-                                    <p> <%= @post.content %></p>
-                                    <div class="w3-row-padding" style="margin:0 -16px">
-                                    </div>
-                                </div>
-                                <div class="w3-container w3-card w3-white w3-round w3-margin">
-                                <% if current_user == @post.user %>
-                            <a href="/posts/<%= @post.id %>/edit">Edit Post</a>
-                    
-                            <form action="/posts/<%= @post.id %>" method="post">
-                            <input type="hidden" name="_method" value="delete">
-                            </form>
-                            
-                            <a href="/posts"> Publish Your Post </a>
-                            <%else%>
-                            <br>
-                            <a href="/posts"> Return to Homepage </a> 
-                            <br><br>
-                            <% end %>
-                              </div>
-                            </div>
-                          </div>
-                          
-                        <!-- End Middle Column -->
-                        </div>

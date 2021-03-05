@@ -16,31 +16,29 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
+
   <body >
     <%if logged_in?%>
     <div class="w3-top">
- <div class="w3-bar w3-left-align w3-large" style="background-color:LightBlue;">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="/posts" class="w3-bar-item w3-button w3-padding-large w3-grey"></i><img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" width="30"></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-  <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-red">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <div class="w3-bar w3-left-align w3-large" style="background-color:LightBlue;">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+        <a href="/posts" class="w3-bar-item w3-button w3-padding-large w3-grey"></i><img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" width="30"></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+          <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-red">3</span></button>     
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+            </div>
+          </div>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+          <img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" class="w3-circle" style="height:23px;width:25px" alt="Avatar"></a>
+      <%end%>
+      </div>
     </div>
-  </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" class="w3-circle" style="height:23px;width:25px" alt="Avatar"></a>
-  <%end%>
- </div>
-</div>
     <div class="wrapper">
-
-        <%= yield %>
-
-      <footer class="branding">
-       
-      </footer>
+      <%= yield %>
+        <footer class="branding">
+        </footer>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

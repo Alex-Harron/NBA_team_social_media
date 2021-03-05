@@ -12,48 +12,44 @@
         </div>
     </div>
 </div>
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
-    <!-- The Grid -->
-    <div class="w3-row">
-    <!-- Left Column -->
-        <div class="w3-col m3">
-        <!-- Profile -->
-            <div class="w3-card w3-round w3-white">
-                <div class="w3-container">
-                    <h4 class="w3-center"><b><%=current_user.username%></b></h4>
-                    <p class="w3-center"><img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" class="w3-circle" style="height:106px;width:106px"></p>
-                    <hr>
-                    <p><%=current_user.email%></p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Washington, DC</p>
-                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 12, 1997</p>
-                </div>
-            <% if logged_in? %>
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-container w3-padding">
-                            <center><button type="button" class="w3-button w3-small" style="background-color:Red;"><i class="fa fa-pencil"></i><a href="/posts/new"> Create Post </a></button></center>
-                            <br>
-                            <center><button type="button" class="w3-button w3-small" style="background-color:LightBlue;"><a href="/logout"> Log Out </a></button></center>
-                        </div>
-                    </div>
-                <%end%>
-                </div>
-            </div>
-        <br>
 
-            <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-            <p><img src="https://media-assets-01.thedrum.com/cache/images/thedrum-prod/s3-news-tmp-56002-2-bumble-poster--default--730.jpg" style="width:200px;"></p>
+
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <div class="w3-row">
+    <div class="w3-col m3">
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+          <h4 class="w3-center"><b><%=current_user.username%></b></h4>
+          <p class="w3-center"><img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png" class="w3-circle" style="height:106px;width:106px"></p>
+          <hr>
+          <p><%=current_user.email%></p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Washington, DC</p>
+          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 12, 1997</p>
+        </div>
+        <% if logged_in? %>
+        <div class="w3-row-padding">
+          <div class="w3-col m12">
+            <div class="w3-container w3-padding">
+              <center><button type="button" class="w3-button w3-small" style="background-color:Red;"><i class="fa fa-pencil"></i><a href="/posts/new"> Create Post </a></button></center>
+              <br>
+              <center><button type="button" class="w3-button w3-small" style="background-color:LightBlue;"><a href="/logout"> Log Out </a></button></center>
+            </div>
           </div>
-          <br>          
-          <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-            <p><img src="https://cdn.joinhoney.com/images/share/honey-money-falling.gif" style="width:200px;"></p>
-          </div>
-          <!-- End Left Column -->
+        <%end%>
+        </div>
+      </div>
+      <br>
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p><img src="https://media-assets-01.thedrum.com/cache/images/thedrum-prod/s3-news-tmp-56002-2-bumble-poster--default--730.jpg" style="width:200px;"></p>
+      </div>
+      <br>          
+      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+        <p><img src="https://cdn.joinhoney.com/images/share/honey-money-falling.gif" style="width:200px;"></p>
+      </div>
     </div>
-    <!-- Middle Column -->
+    
+
     <div class="w3-col m7">
-   
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
@@ -62,38 +58,33 @@
         </div>
       </div>
       <% @posts.each do |p| %>
-        <div class="w3-container w3-card w3-white w3-round w3-margin"><%=p.user.username%>
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><%=p.user.username%>
         <img src="<%= p.user.img_url == nil ? 'https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_concept_weinstein.png' : p.user.img_url %>" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity"><%=p.timestamp == nil ? Date.today.strftime('%Y-%m-%d') : p.timestamp.strftime('%Y-%m-%d') %></span>
         <h3 style="font-size:20px"><a href="/posts/<%= p.id %>"><b><%= p.title %></b></a></h3>
-        <p> <%= p.content %></p>
+        <p><%= p.content %></p>
         <div class="w3-row-padding" style="margin:0 -16px">
         </div>
-
-        <% if current_user == p.user %>
-            <a href="/posts/<%= p.id %>/edit"></a> 
-        <% end %>
-        </div>
-    <% end %>
-      
-    <!-- End Middle Column -->
+      <% if current_user == p.user %>
+        <a href="/posts/<%= p.id %>/edit"></a> 
+      <% end %>
+      </div>
+      <% end %>
     </div>
     
-    <!-- Right Column -->
     <div class="w3-col m2">
       <div class="w3-container w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Schedule:</p>
           <img src="https://sportslogohistory.com/wp-content/uploads/2018/04/los_angeles_clippers_dan_kennedy-1-150x150.png" style="width:100px;">
-            <p>Thu, Mar 4 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/dal.png&w=50&h=50" style="width:20px"> Dallas 7:00 PM</p>
-            <p>Sat, Mar 20 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/cha.png&w=50&h=50" style="width:20px"> Charlotte 9:00 PM</p>
-            <p>Mon, Mar 22 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/atl.png&w=50&h=50" style="width:20px"> Atlanta 9:30 PM</p>
-            <p>Thu, Mar 25 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/den.png&w=50&h=50" style="width:20px"> Denver 7:00 PM</p>
-            <p>Tue, Mar 30 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/hou.png&w=50&h=50" style="width:20px"> Houston 7:00 PM</p>
+          <p>Thu, Mar 4 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/dal.png&w=50&h=50" style="width:20px"> Dallas 7:00 PM</p>
+          <p>Sat, Mar 20 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/cha.png&w=50&h=50" style="width:20px"> Charlotte 9:00 PM</p>
+          <p>Mon, Mar 22 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/atl.png&w=50&h=50" style="width:20px"> Atlanta 9:30 PM</p>
+          <p>Thu, Mar 25 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/den.png&w=50&h=50" style="width:20px"> Denver 7:00 PM</p>
+          <p>Tue, Mar 30 @<img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/hou.png&w=50&h=50" style="width:20px"> Houston 7:00 PM</p>
         </div>
       </div>
       <br>
-      
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Previous Game:</p>
@@ -111,15 +102,9 @@
         </div>
       </div>
       <br>
-    <!-- End Right Column -->
     </div>
-    
-  <!-- End Grid -->
   </div>
-  
-<!-- End Page Container -->
 </div>
-<br>
 </body>
 
 

@@ -1,6 +1,6 @@
 <body style= "background-image: url('https://www.wallpapertip.com/wmimgs/58-583415_clippers-wallpaper.jpg');">
 <div class="w3-container w3-card w3-round w3-margin" style="background-color:DarkBlue;">
-    <h2 style="color:White;"><center>Welcome to the Los Angeles Clippers' Social Page!</h2>
+    <h2 style="color:White;"><center>Welcome to the Los Angeles Clippers Social Page!</h2>
     <br>
 </div>
 </body>
@@ -13,19 +13,20 @@
                     <h4 class="w3-center"><p style="font-size:18px">Become a member by signing up today: </p>
                     <p style="font-size:11px">Already a member? Click <b>Sign In</b> to contine</p></h4>
                     <nav>
-  <% if !logged_in? %>
-       <p><a href="/signup">Sign Up</a> 
-       <br>
-       <a href="/login"> Sign In </a></p>
-       <%else%>
-
-        <a href="/posts"> Continue to your Home Page. </a>
-        <br>
-        <a href="/logout"> Logout </a>
-        
-      <%end %>
-  </nav>
-</div>
+                    <% if !logged_in? %>
+                        <p><a href="/signup">Sign Up</a> 
+                        <br>
+                        <a href="/login"> Sign In </a></p>
+                    <%else%>
+                        <a href="/posts"> Continue to your Home Page. </a>
+                        <br>
+                        <a href="/logout"> Logout </a>
+                    <%end %>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
