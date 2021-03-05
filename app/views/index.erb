@@ -1,24 +1,33 @@
-<div class="container">
-  <div class="col-md-8 col-md-offset-2">
-    <h2><center>Welcome to the Los Angeles Clippers' Social Page!</h2>
-
-    <p style="font-size:18px">Please <b>Sign Up</b> below to contine: </p>
-    <p style="font-size:11px">Already a member? Click <b>Sign In</b> to contine</p>
-
-    <nav>
-    <% if !logged_in? %>
-         <a href="/signup">Sign Up</a> 
-    
-         <a href="/login"> Sign In </a>
-
-         <%else%>
-
-          <a href="/posts"> Continue to your Home Page. </a>
-          <br>
-          <a href="/logout"> Logout </a>
-          
-        <%end %>
-    </nav>
+<body style= "background-image: url('https://www.wallpapertip.com/wmimgs/58-583415_clippers-wallpaper.jpg');">
+<div class="w3-container w3-card w3-round w3-margin" style="background-color:DarkBlue;">
+    <br>
+    <h2 style="color:White;"><center>Welcome to the Los Angeles Clippers' Social Page!</h2>
+    <br>
 </div>
+</body>
+
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">  
+    <div class="w3-row">
+        <div class="w3-col m3">
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <h4 class="w3-center"><p style="font-size:18px">Become a member by signing up today: </p>
+                    <p style="font-size:11px">Already a member? Click <b>Sign In</b> to contine</p></h4>
+                    <nav>
+  <% if !logged_in? %>
+       <p><a href="/signup">Sign Up</a> 
+       <br>
+       <a href="/login"> Sign In </a></p>
+       <%else%>
+
+        <a href="/posts"> Continue to your Home Page. </a>
+        <br>
+        <a href="/logout"> Logout </a>
+        
+      <%end %>
+  </nav>
+</div>
+</div>
+
 
 

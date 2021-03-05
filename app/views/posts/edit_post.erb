@@ -1,15 +1,35 @@
-<h2 style="text-align: right"><img src="https://upload.wikimedia.org/wikipedia/commons/7/71/LA_Clippers_wordmark_2015%E2%80%93current.png" width="100"></h2>
-<h2> Edit Post </h2>
-
-<form action="/posts/<%= @post.id %>" method="post">
-    <input type="hidden" name="_method" value="patch">
-    Title: <input type="text" name="title" value="<%= @post.title %>">
-    Content: <textarea name="content"><%= @post.content %></textarea>
-    <input type="submit" value="Edit Post">
-</form>
-
-<form action="/posts/<%= @post.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Post">
-</form>
+<body style= "background-image: url('https://i.pinimg.com/originals/25/9c/08/259c081cf67c0c5e351817663c4d1479.jpg'); background-size: 35%;">
+<h1 style="text-align: right"></h1>
+<div class="w3-container w3-card w3-round w3-margin"  style="background-color:DarkBlue;">
+    <br><br>
+    <h2 style="color:White;"><center>Edit Post</h2>
+</div>
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">  
+    <div class="w3-row">
+        <div class="w3-col m3">
+            <div style class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <br><br>
+                    <form action="/posts/<%= @post.id %>" method="post">
+                    <input type="hidden" name="_method" value="patch">
+                    Title: <input type="text" name="title" value="<%= @post.title %>">
+                    <br><br>
+                    Content: <textarea name="content"><%= @post.content %></textarea>
+                    <br><br>
+                    <input type="submit" value="Edit Post">
+                    </form>
+                    <br>
+                    <form action="/posts/<%= @post.id %>" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="submit" value="Delete Post">
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+          
+</body>
 

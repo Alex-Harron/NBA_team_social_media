@@ -1,16 +1,21 @@
-<div class="w3-row-padding">
-  <div class="w3-col m12">
-  <h4>;lkj;lkj;ljk;kj;kljj;jlk;ljk</h4>
-  </div>
+<body style= "background-image: url('https://i.pinimg.com/originals/25/9c/08/259c081cf67c0c5e351817663c4d1479.jpg'); background-size: 35%;">
+<div class="w3-container w3-card w3-round w3-margin"  style="background-color:DarkBlue;">
+    <br>
+    <h2 style="color:White;"><center>Create a New Post</h2>
 </div>
-  <div class="w3-container w3-card w3-white w3-round w3-margin"><h2><center>Create a New Post</center></h2>
-  <form action="/posts" method="POST">
-    <p><center>Title:<input type="text" name="title"></center></p>
-    <p><center>Status:<textarea name="content"></textarea></p>
-    <center><input class="btn btn-primary" type="submit" value="submit"></center>
-  </form>
-  <span class="w3-right w3-opacity"></span>
-  <h3 style="font-size:20px"></h3>
-  <div class="w3-row-padding" style="margin:0 -16px">
-  </div>
-</div>
+</body>
+
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">  
+    <div class="w3-row">
+        <div class="w3-col m3">
+            <div style class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <h4 class="w3-center"><p style="font-size:18px">Join the conversation!</p></h4>
+                    <form action="/posts" method="POST">
+                    <p>Title:<input type="text" name="title"></p>
+                    <p>Status:<textarea name="content"></textarea></p>
+                    <input class="btn btn-primary" type="submit" value="submit">
+                    </form>
+                  <br>
+                </div>
+            </div>
