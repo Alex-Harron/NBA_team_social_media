@@ -11,16 +11,22 @@ class PostsController < ApplicationController
   end 
 
   get '/posts/:id' do
-    @post = Post.includes(:user).find_by_id(params[:id])
+    @post = Post.find_by_id(params[:id])
     get_post
     erb :'posts/show'
   end 
 
   post '/posts' do 
     @post = Post.new(params)
+    if @post.title.blank? || @post.content.blank?
+      flash[:message] = "Error: Please fill out all fields to continue"
+        flash[:alert_type] = "warning"
+        redirect '/posts/new'
+    else
     @post.user_id = session[:user_id]
     @post.save
     redirect "/posts/#{@post.id}" 
+    end
   end 
 
   get '/posts/:id/edit' do 
@@ -33,7 +39,13 @@ class PostsController < ApplicationController
       get_post
       redirect_if_not_authorized
       @post.update(title: params[:title], content: params[:content])
+      if @post.title.blank? || @post.content.blank?
+        flash[:message] = "Error: Please fill out all fields to continue"
+        flash[:alert_type] = "warning"
+        redirect "/posts/#{@post.id}/edit"
+      else
       redirect "/posts/#{@post.id}" 
+    end
   end 
 
 

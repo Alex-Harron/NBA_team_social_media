@@ -1,9 +1,6 @@
 <body style= "background-image: url('https://i.pinimg.com/originals/25/9c/08/259c081cf67c0c5e351817663c4d1479.jpg'); background-size: 35%;">
 <div class="w3-container w3-card w3-round w3-margin"  style="background-color:DarkBlue;">
   <h2 style="color:White;"><center>Welcome New User!</h2>
-    <% unless locals.empty? %>
-      <%= message %>
-    <% end %>
 </div>
 </body>
 
@@ -13,12 +10,15 @@
       <div style class="w3-card w3-round w3-white">
         <div class="w3-container">
           <h4 class="w3-center"><p style="font-size:18px">Please <b>Sign Up</b> below to contine: </p>
-          <p style="font-size:11px">Already a member? Click <a href="/login"<b>Sign In</b></a> to contine</p></h4>
+          <p style="font-size:11px">Already a member? Click <a style= "color:blue" href="/login"<b>Sign In</b></a> to continue</p></h4>
+          <% if locals.empty? %>
+          <p style="font-size:10px; color:Red";><%= flash[:message] %></p> 
+          <% end %>
           <nav>
           <form action="/signup" method="POST">
-          <p>Username: <input type="text" name="username"></p>
-          <p>Email: <input type="text" name="email"></p>
-          <p>Password: <input type="text" name="password"></p>
+          <p><input type="text" name="username" placeholder="Username:"></p>
+          <p><input type="text" name="email" placeholder="Email:"></p>
+          <p><input type="text" name="password" placeholder="Password:"></p>
           <input class="btn btn-primary" type="submit">
           </form>
           <br>

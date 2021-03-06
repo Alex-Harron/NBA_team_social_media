@@ -2,7 +2,7 @@
 <h1 style="text-align: right"></h1>
 <div class="w3-container w3-card w3-round w3-margin"  style="background-color:DarkBlue;">
     <br><br>
-    <h2 style="color:White;"><center>Edit Your Post</h2>
+    <h2 style="color:White;"><center>Create a Post</h2>
 </div>
 </body>
 
@@ -36,12 +36,15 @@
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
-          <br><br>
+          <h4 class="w3-center"><p style="font-size:18px"><b>Edit Your Post</b></p></h4>
+            <% if locals.empty? %>
+            <p style="font-size:10px; color:Red";><%= flash[:message] %></p> 
+            <% end %>
             <form action="/posts/<%= @post.id %>" method="post">
             <input type="hidden" name="_method" value="patch">
-            Title: <input type="text" name="title" value="<%= @post.title %>">
+            <center><textarea name="title" ><%= @post.title %></textarea>
             <br><br>
-            Content: <textarea name="content"><%= @post.content %></textarea>
+            <textarea name="content"><%= @post.content %></textarea></center>
             <br><br>
             <input type="submit" value="Edit Post">
             </form>

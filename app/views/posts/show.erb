@@ -38,6 +38,9 @@
               </div>
           </div>
           <div class="w3-container w3-card w3-white w3-round w3-margin">
+          <% if locals.empty? %>
+            <p style="font-size:10px; color:Red";><%= flash[:message] %></p> 
+          <% end %>
           <% if current_user == @post.user %>
             <a href="/posts/<%= @post.id %>/edit">Edit Post</a>
             <form action="/posts/<%= @post.id %>" method="post">
@@ -46,7 +49,7 @@
             <a href="/posts"> Publish Your Post </a>
           <%else%>
           <br>
-            <a href="/posts"> Return to Homepage </a> 
+          <a href="/posts"> Return to Homepage </a> 
           <br><br>
           <% end %>
       </div>

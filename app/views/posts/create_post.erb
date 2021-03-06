@@ -37,12 +37,16 @@
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
-            <h4 class="w3-center"><p style="font-size:18px">Join the conversation!</p></h4>
+            <h4 class="w3-center"><p style="font-size:18px"><b>Join the conversation!</b></p></h4>
+            <% if locals.empty? %>
+            <p style="font-size:10px; color:Red";><%= flash[:message] %></p> 
+            <% end %>
             <form action="/posts" method="POST">
-            <p>Title:<textarea name="title"></textarea></p>
-            <p>Status:<textarea name="content"></textarea></p>
+            <p><center><textarea name="title" placeholder="Status:"></textarea></p>
+            <p><textarea name="content" placeholder="Content:"></textarea></center></p>
             <input class="btn btn-primary" type="submit" value="submit">
             </form>
+            <br>
             <a href="/posts"> Return to Homepage</a> 
             <br>    
           </div>
