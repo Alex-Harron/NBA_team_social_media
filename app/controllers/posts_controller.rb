@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   end
 
   get '/posts/new' do 
-      @params = params
       erb :'posts/create_post'
   end 
 
