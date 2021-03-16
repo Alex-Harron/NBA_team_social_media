@@ -10,7 +10,11 @@ class PostsController < ApplicationController
   end
 
   get '/posts/new' do 
+    if logged_in?
       erb :'posts/create_post'
+    else
+      redirect_if_not_logged_in
+    end
   end 
 
   get '/posts/:id' do
