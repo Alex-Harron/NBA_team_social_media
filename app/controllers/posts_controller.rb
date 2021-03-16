@@ -19,7 +19,6 @@ class PostsController < ApplicationController
 
   get '/posts/:id' do
     if logged_in?
-      @post = Post.find_by_id(params[:id])
       get_post
       erb :'posts/show'
     else 
